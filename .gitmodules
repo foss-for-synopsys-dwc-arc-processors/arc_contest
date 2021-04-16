@@ -1,0 +1,6 @@
+[submodule "himax_tflm"]
+	path = himax_tflm
+	url = https://github.com/HimaxWiseEyePlus/himax_tflm
+[submodule "bsp_tflu"]
+	path = bsp_tflu
+	url = https://github.com/HimaxWiseEyePlus/bsp_tflu.git
