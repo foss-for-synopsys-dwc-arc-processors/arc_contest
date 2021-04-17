@@ -7,5 +7,8 @@ git clone https://github.com/foss-for-synopsys-dwc-arc-processors/arc_contest.gi
 cd arc_contest
 git submodule init
 git submodule update
+# get extra packages
+cd himax_tflm
+make download
 ```
 
