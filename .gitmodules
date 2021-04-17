@@ -1,6 +1,7 @@
-[submodule "himax_tflm"]
-	path = himax_tflm
-	url = https://github.com/HimaxWiseEyePlus/himax_tflm
 [submodule "bsp_tflu"]
 	path = bsp_tflu
 	url = https://github.com/HimaxWiseEyePlus/bsp_tflu.git
+[submodule "himax_tflm"]
+	path = himax_tflm
+	url = https://github.com/foss-for-synopsys-dwc-arc-processors/himax_tflm.git
+	branch = arc_contest
