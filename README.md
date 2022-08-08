@@ -1,5 +1,3 @@
-# 2021 ARC Contest
-This repo is used for 2021 ARC contest
 # get source codes and SDK for 2021 ARC contest
 Run commands:
 ```
