@@ -1,0 +1,6 @@
+[submodule "APP"]
+	path = APP
+	url = https://github.com/coherent17/WOLO-app
+[submodule "Model_Training"]
+	path = Model_Training
+	url = https://github.com/c119cheng/distyolo_v7

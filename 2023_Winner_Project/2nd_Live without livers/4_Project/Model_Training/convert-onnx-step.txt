@@ -1,0 +1,16 @@
+More detail see export.py
+
+for kitty datasets
+
+convert to onnx
+python3 export.py --weights best.pt --grid --end2end --simplify --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 224 640 --max-wh 640
+
+test result onnx
+python3 ./yolo2onnx.py --weights /best.onnx --test-input 000002.png --img-size 640 --device 0 --name 'distyolo.onnx' --test
+
+
+
+for nuscenes datasets
+
+convert to onnx
+python3 export.py --weights ./nuscenes/best.pt --grid --end2end --topk-all 100 --iou-thres 0.65 --conf-thres 0.35 --img-size 384 640 --max-wh 640

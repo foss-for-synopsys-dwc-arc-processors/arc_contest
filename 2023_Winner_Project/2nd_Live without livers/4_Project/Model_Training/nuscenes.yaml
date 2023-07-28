@@ -1,0 +1,9 @@
+train: ./nuscenes/train.txt  # 
+val: ./nuscenes/val.txt  #
+test: ./nuscenes/test-dev.txt  #
+
+# number of classes
+nc: 15
+
+# class names
+names: [ 'pedestrian', 'animal', 'car', 'motorcycle', 'bicycle', 'bus', 'truck', 'construction', 'emergency', 'trailer', 'barrier', 'trafficcone', 'pushable_pullable', 'debris', 'bicycle_rack']

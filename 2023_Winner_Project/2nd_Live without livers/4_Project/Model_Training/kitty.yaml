@@ -1,0 +1,9 @@
+train: ./kitty/train.txt  # 
+val: ./kitty/val.txt  #
+test: ./kitty/test-dev.txt  #
+
+# number of classes
+nc: 7
+
+# class names
+names: [ 'person', 'car', 'van', 'truck', 'person-sit', 'bcycle', 'train']

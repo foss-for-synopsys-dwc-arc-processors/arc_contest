@@ -1,0 +1,83 @@
+# parameters
+nc: 80  # number of classes
+depth_multiple: 0.30  # model depth multiple
+width_multiple: 0.30  # layer channel multiple
+
+# anchors
+anchors:
+  # - [10,13, 16,30, 33,23]  # P3/8
+  - [30,61, 62,45, 59,119]  # P4/16
+  # - [116,90, 156,198, 373,326]  # P5/32
+
+anchors2:
+  - [10,13, 16,30, 33,23]
+
+
+# yolov7-tiny backbone
+backbone:
+  # [from, number, module, args] c2, k=1, s=1, p=None, g=1, act=True
+  [[-1, 1, Conv, [32, 3, 2, None, 1, nn.ReLU6()]],  # 0-P1/2  
+  
+   [-1, 1, Conv, [64, 3, 2, None, 1, nn.ReLU6()]],  # 1-P2/4    
+   
+   [-1, 1, Conv, [32, 1, 1, None, 1, nn.ReLU6()]],
+   [-2, 1, Conv, [32, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [32, 3, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [32, 3, 1, None, 1, nn.ReLU6()]],
+   [[-1, -2, -3, -4], 1, Concat, [1]],
+   [-1, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],  # 7 64/4
+   
+   [-1, 1, MP, []],  # 8-P3/8
+   [-1, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],
+   [-2, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [64, 3, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [64, 3, 1, None, 1, nn.ReLU6()]],
+   [[-1, -2, -3, -4], 1, Concat, [1]],
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],  # 14  128/8
+   
+   [-1, 1, MP, []],  # 15-P4/16
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],
+   [-2, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [128, 3, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [128, 3, 1, None, 1, nn.ReLU6()]],
+   [[-1, -2, -3, -4], 1, Concat, [1]],
+   [-1, 1, Conv, [256, 1, 1, None, 1, nn.ReLU6()]],  # 21  256/16
+  ]
+
+# yolov7-tiny head
+head:
+  [[-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],
+   [-2, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, SP, [5]],
+   [-2, 1, SP, [9]],
+   [-3, 1, SP, [13]],
+   [[-1, -2, -3, -4], 1, Concat, [1]],
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],
+   [[-1, -7], 1, Concat, [1]],
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],  # 30 (SPPSPC) 128/16
+  
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [14, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]], # route backbone P4
+   [[-1, -2], 1, Concat, [1]],   #34 256/8
+
+   [-1, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],
+   [-2, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [64, 3, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [64, 3, 1, None, 1, nn.ReLU6()]],
+   [[-1, -2, -3, -4], 1, Concat, [1]],
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]], #40 P3-/8
+
+   [30, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],
+   [30, 1, Conv, [64, 1, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [64, 3, 1, None, 1, nn.ReLU6()]],
+   [-1, 1, Conv, [64, 3, 1, None, 1, nn.ReLU6()]],
+   [[-1, -2, -3, -4], 1, Concat, [1]],
+   [-1, 1, Conv, [128, 1, 1, None, 1, nn.ReLU6()]], #46
+   
+   [40, 1, Conv, [128, 3, 1, None, 1, nn.ReLU6()]],
+   [46, 1, Conv, [256, 3, 1, None, 1, nn.ReLU6()]],
+
+   # [[47], 1, IDetect, [nc, anchors2]],
+   [[48], 1, IDetect, [nc, anchors]],   # Detect(P3, P4, P5)
+  ]

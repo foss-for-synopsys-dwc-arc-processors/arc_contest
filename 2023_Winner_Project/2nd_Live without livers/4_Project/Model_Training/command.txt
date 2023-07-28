@@ -1,0 +1,2 @@
+python export.py --weights ./runs/train/yolov7-dist-nuscenes-tiny-gray7/weights/best.pt --img-size 640 480
+python train.py --workers 8 --epochs 1 --device 0 --batch-size 64 --data nuscenes.yaml --img 640 640 --cfg cfg/training/yolov7-tiny-relu6.yaml --weights './yolov7-tiny.pt' --name yolov7-dist-tiny-relu6 --hyp data/hyp.scratch.tiny.yaml --notest

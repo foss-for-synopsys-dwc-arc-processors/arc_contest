@@ -1,0 +1,14 @@
+train: ./arc_nuscenes/train.txt  # 
+val: ./arc_nuscenes/val.txt  #
+test: ./arc_nuscenes/test-dev.txt  #
+
+# number of classes
+nc: 4
+
+# class names
+names: [ 'pedestrian', 'car', 'motorcycle', 'truck']
+# Train label size
+# [14127, 35142, 1508, 11368]
+
+# Val label size
+# [2440, 4020, 365, 653]
