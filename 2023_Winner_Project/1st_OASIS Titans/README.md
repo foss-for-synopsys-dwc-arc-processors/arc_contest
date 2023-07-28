@@ -1,4 +1,4 @@
-# 2023 1st Project: Oasis Titans
+# 2023 1st Project: OASIS Titans
 ## File in this folder
 1. Project slides
 2. Project pictures
