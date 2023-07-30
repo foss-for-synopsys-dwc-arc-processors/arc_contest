@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "spi_slave_protocol.h": "c",
+        "string.h": "c",
+        "hx_drv_uart.h": "c",
+        "max30102.h": "c",
+        "stdint.h": "c",
+        "cmath": "cpp",
+        "cstdarg": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "type_traits": "cpp",
+        "limits": "cpp",
+        "*.tcc": "cpp",
+        "cstdint": "cpp",
+        "typeinfo": "cpp",
+        "tflitemicro_algo.h": "c",
+        "sc16is750_bluepacket.h": "c",
+        "model_settings.h": "c",
+        "math.h": "c"
+    }
+}
