@@ -1,0 +1,17 @@
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense_35 (Dense)            (None, 5)                 20        
+                                                                 
+ batch_normalization_38 (Bat  (None, 5)                20        
+ chNormalization)                                                
+                                                                 
+ activation_45 (Activation)  (None, 5)                 0         
+                                                                 
+ dense_36 (Dense)            (None, 1)                 6         
+                                                                 
+=================================================================
+Total params: 46
+Trainable params: 36
+Non-trainable params: 10
+_________________________________________________________________
